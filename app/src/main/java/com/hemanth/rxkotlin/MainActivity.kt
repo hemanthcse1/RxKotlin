@@ -24,6 +24,13 @@ class MainActivity : AppCompatActivity() {
 
         // fromIterableOperator()
 
+       rangeOperatorMethod()
+
+
+    }
+
+    private fun rangeOperatorMethod() {
+
         rangeOperator().subscribe(
             {
                 Log.d(TAG, "onNext: ${it}")
@@ -36,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-
+        rangeOperatorMethod()
 
     }
 
