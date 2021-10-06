@@ -88,3 +88,9 @@ fun fromIterableOperator(){
 
     observable.subscribe(observer)
 }
+
+fun rangeOperator(): Observable<Int>{
+    // using lambda expression
+
+    return Observable.range(1,100)
+}

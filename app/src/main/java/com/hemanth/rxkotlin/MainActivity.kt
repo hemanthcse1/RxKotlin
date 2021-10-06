@@ -22,7 +22,21 @@ class MainActivity : AppCompatActivity() {
 
         // fromOperator()
 
-        fromIterableOperator()
+        // fromIterableOperator()
+
+        rangeOperator().subscribe(
+            {
+                Log.d(TAG, "onNext: ${it}")
+            },
+            {
+                Log.d(TAG, "onError: "+it.toString())
+            },
+            {
+                Log.d(TAG, "onComplete: ")
+            }
+        )
+
+
 
     }
 
