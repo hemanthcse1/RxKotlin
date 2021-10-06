@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         // fromOperator()
 
+        fromIterableOperator()
 
     }
 
