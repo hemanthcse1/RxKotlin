@@ -2,9 +2,12 @@ package com.hemanth.rxkotlin
 
 import android.util.Log
 import com.hemanth.rxkotlin.MainActivity.Companion.TAG
+import com.hemanth.rxkotlin.data.User
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
+import java.lang.Exception
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -106,4 +109,35 @@ fun intervalOperator(): Observable<Long>{
 
 fun timerOperator(): Observable<Long>{
     return Observable.timer(5,TimeUnit.SECONDS)
+}
+
+fun createOperator(): Observable<Int>{
+    return Observable.create(ObservableOnSubscribe<Int>{
+        try {
+            for (i in mList){
+                it.onNext(i * 5)
+            }
+
+            it.onComplete()
+
+        }catch (e: Exception){
+            it.onError(e)
+        }
+    })
+}
+
+val mUserList = mutableListOf<User>(
+    User(1,"Hemanth",30),
+    User(2,"Anil",26),
+    User(3,"Kiran",25),
+    User(4,"Adharsh",22),
+    User(5,"Teja",20)
+)
+
+fun filterOperator(): Observable<User>{
+    return Observable.fromIterable(mUserList)
+}
+
+fun lastOperator(): Observable<User>{
+    return Observable.fromIterable(mUserList)
 }

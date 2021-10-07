@@ -3,6 +3,7 @@ package com.hemanth.rxkotlin
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.hemanth.rxkotlin.data.User
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
@@ -32,17 +33,75 @@ class MainActivity : AppCompatActivity() {
 
         // timerOperatorMethod()
 
+        // createOperatorMethod()
+
+        // filterOperatorMethod()
+
+        lastOperatorMethod()
+
+    }
+
+    private fun lastOperatorMethod() {
+
+        lastOperator()
+            .filter {
+                it.age >= 25
+            }
+            .last(User(1,"Hemanth",30))
+            .subscribe(
+                {
+                    Log.d(TAG, "onNext: "+it.name)
+                },
+                {
+                    Log.d(TAG, "onError: "+it.toString())
+                }
+            )
+    }
+
+    private fun filterOperatorMethod() {
+
+        filterOperator()
+            .filter {
+               // it.age < 25
+                it.name == "Hemanth"
+            }
+            .subscribe(
+                {
+                    Log.d(TAG, "onNext: "+it.name)
+                },
+                {
+                    Log.d(TAG, "onError: "+it.toString())
+                },
+                {
+                    Log.d(TAG, "onComplete: ")
+                }
+            )
+    }
+
+    private fun createOperatorMethod() {
+
+        createOperator().subscribe(
+            {
+                Log.d(TAG, "onNext: " + it)
+            },
+            {
+                Log.d(TAG, "onError: " + it.toString())
+            },
+            {
+                Log.d(TAG, "onComplete: ")
+            }
+        )
     }
 
     private fun timerOperatorMethod() {
 
         timerOperator().subscribe(
             {
-                Log.d(TAG, "onNext: "+it)
+                Log.d(TAG, "onNext: " + it)
                 getLocation()
             },
             {
-                Log.d(TAG, "onError: "+it.toString())
+                Log.d(TAG, "onError: " + it.toString())
             },
             {
                 Log.d(TAG, "onComplete: ")
@@ -54,11 +113,11 @@ class MainActivity : AppCompatActivity() {
 
         intervalOperator().subscribe(
             {
-                Log.d(TAG, "onNext: "+it)
+                Log.d(TAG, "onNext: " + it)
                 getLocation()
             },
             {
-                Log.d(TAG, "onError: "+it.toString())
+                Log.d(TAG, "onError: " + it.toString())
             },
             {
                 Log.d(TAG, "onComplete: ")
@@ -66,7 +125,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun getLocation(){
+    private fun getLocation() {
         Log.d(TAG, "Latitude: 102.0303 Longitude: 1.26456")
     }
 
@@ -74,10 +133,10 @@ class MainActivity : AppCompatActivity() {
 
         repeateOperator().subscribe(
             {
-                Log.d(TAG, "onNext: "+it)
+                Log.d(TAG, "onNext: " + it)
             },
             {
-                Log.d(TAG, "onError: "+it.toString())
+                Log.d(TAG, "onError: " + it.toString())
             },
             {
                 Log.d(TAG, "onComplete: ")
