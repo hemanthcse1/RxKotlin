@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 
 class MainActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
         const val TAG = "MainActivity"
     }
 
@@ -24,9 +24,65 @@ class MainActivity : AppCompatActivity() {
 
         // fromIterableOperator()
 
-       rangeOperatorMethod()
+        // rangeOperatorMethod()
 
+        // repeateOperatorMethod()
 
+        // intervalOperatorMethod()
+
+        // timerOperatorMethod()
+
+    }
+
+    private fun timerOperatorMethod() {
+
+        timerOperator().subscribe(
+            {
+                Log.d(TAG, "onNext: "+it)
+                getLocation()
+            },
+            {
+                Log.d(TAG, "onError: "+it.toString())
+            },
+            {
+                Log.d(TAG, "onComplete: ")
+            }
+        )
+    }
+
+    private fun intervalOperatorMethod() {
+
+        intervalOperator().subscribe(
+            {
+                Log.d(TAG, "onNext: "+it)
+                getLocation()
+            },
+            {
+                Log.d(TAG, "onError: "+it.toString())
+            },
+            {
+                Log.d(TAG, "onComplete: ")
+            }
+        )
+    }
+
+    private fun getLocation(){
+        Log.d(TAG, "Latitude: 102.0303 Longitude: 1.26456")
+    }
+
+    private fun repeateOperatorMethod() {
+
+        repeateOperator().subscribe(
+            {
+                Log.d(TAG, "onNext: "+it)
+            },
+            {
+                Log.d(TAG, "onError: "+it.toString())
+            },
+            {
+                Log.d(TAG, "onComplete: ")
+            }
+        )
     }
 
     private fun rangeOperatorMethod() {
@@ -36,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "onNext: ${it}")
             },
             {
-                Log.d(TAG, "onError: "+it.toString())
+                Log.d(TAG, "onError: " + it.toString())
             },
             {
                 Log.d(TAG, "onComplete: ")
@@ -49,9 +105,9 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun fistExample() {
-        val observable = Observable.just(1,2,3,4,5)
+        val observable = Observable.just(1, 2, 3, 4, 5)
 
-        val observer = object : Observer<Int>{
+        val observer = object : Observer<Int> {
             override fun onSubscribe(d: Disposable?) {
                 Log.d(TAG, "onSubscribe: ")
             }
@@ -61,7 +117,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onError(e: Throwable?) {
-                Log.d(TAG, "onError: "+e.toString())
+                Log.d(TAG, "onError: " + e.toString())
             }
 
             override fun onComplete() {

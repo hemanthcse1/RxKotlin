@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 val mList = mutableListOf(1,2,3,4,5,6,7,8,9,10)
 val arraysOfNum = arrayOf(1,2,3,4,5,6,7,8,9,10,11,12)
@@ -90,7 +91,19 @@ fun fromIterableOperator(){
 }
 
 fun rangeOperator(): Observable<Int>{
-    // using lambda expression
-
     return Observable.range(1,100)
+}
+
+fun repeateOperator(): Observable<Int>{
+    return Observable.range(1,10).repeat(2)
+}
+
+fun intervalOperator(): Observable<Long>{
+    return Observable.interval(5,2,TimeUnit.SECONDS).takeWhile {
+        value -> value <= 10
+    }
+}
+
+fun timerOperator(): Observable<Long>{
+    return Observable.timer(5,TimeUnit.SECONDS)
 }
