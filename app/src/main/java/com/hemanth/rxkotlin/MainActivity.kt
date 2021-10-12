@@ -37,8 +37,28 @@ class MainActivity : AppCompatActivity() {
 
         // filterOperatorMethod()
 
-        lastOperatorMethod()
+        // lastOperatorMethod()
 
+        distinctOperatorMethod()
+
+    }
+
+    private fun distinctOperatorMethod() {
+
+        distinctOperator()
+            //.distinct() // it will compare whole object
+            .distinct { it.age } // distict based on age
+            .subscribe(
+                {
+                    Log.d(TAG, "onNext: "+it.name)
+                },
+                {
+                    Log.d(TAG, "onError: "+it.toString())
+                },
+                {
+                    Log.d(TAG, "onComplete: ")
+                }
+            )
     }
 
     private fun lastOperatorMethod() {
@@ -47,6 +67,8 @@ class MainActivity : AppCompatActivity() {
             .filter {
                 it.age >= 25
             }
+            //.lastElement()
+            //.lastOrError() // if list is empty
             .last(User(1,"Hemanth",30))
             .subscribe(
                 {
@@ -158,7 +180,6 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-        rangeOperatorMethod()
 
     }
 

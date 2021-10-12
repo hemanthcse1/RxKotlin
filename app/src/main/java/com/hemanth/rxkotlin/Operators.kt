@@ -128,10 +128,13 @@ fun createOperator(): Observable<Int>{
 
 val mUserList = mutableListOf<User>(
     User(1,"Hemanth",30),
-    User(2,"Anil",26),
+    User(2,"Anil",25),
     User(3,"Kiran",25),
     User(4,"Adharsh",22),
-    User(5,"Teja",20)
+    User(5,"Teja",20),
+    User(6,"Arun",38),
+    User(7,"Raghava",38),
+    User(8,"Shankara",38)
 )
 
 fun filterOperator(): Observable<User>{
@@ -141,3 +144,8 @@ fun filterOperator(): Observable<User>{
 fun lastOperator(): Observable<User>{
     return Observable.fromIterable(mUserList)
 }
+
+fun distinctOperator(): Observable<User>{
+    return Observable.fromIterable(mUserList)
+}
+
