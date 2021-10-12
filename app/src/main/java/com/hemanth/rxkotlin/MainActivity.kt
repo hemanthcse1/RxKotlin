@@ -7,6 +7,7 @@ import com.hemanth.rxkotlin.data.User
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,14 +42,34 @@ class MainActivity : AppCompatActivity() {
 
         // distinctOperatorMethod()
 
-        skipOperatorMethod()
+        // skipOperatorMethod()
 
+        bufferOperatorMethod()
+
+    }
+
+    private fun bufferOperatorMethod() {
+
+        bufferOperator()
+            .buffer(3)
+            .subscribe(
+                {
+                    Log.d(TAG, "onNext: "+it)
+                },
+                {
+                    Log.d(TAG, "onError: "+it.toString())
+                },
+                {
+                    Log.d(TAG, "onComplete: ")
+                }
+            )
     }
 
     private fun skipOperatorMethod() {
 
         skipOperator()
             //.skip(2)
+            //.skip(1,TimeUnit.MILLISECONDS)
             .skipLast(2)
             //.distinct { it.age }
             .subscribe(
