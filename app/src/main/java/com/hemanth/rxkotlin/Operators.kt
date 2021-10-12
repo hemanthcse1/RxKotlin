@@ -149,3 +149,7 @@ fun distinctOperator(): Observable<User>{
     return Observable.fromIterable(mUserList)
 }
 
+fun skipOperator() : Observable<User>{
+    return Observable.fromIterable(mUserList)
+}
+

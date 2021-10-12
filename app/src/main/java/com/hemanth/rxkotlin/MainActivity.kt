@@ -39,8 +39,29 @@ class MainActivity : AppCompatActivity() {
 
         // lastOperatorMethod()
 
-        distinctOperatorMethod()
+        // distinctOperatorMethod()
 
+        skipOperatorMethod()
+
+    }
+
+    private fun skipOperatorMethod() {
+
+        skipOperator()
+            //.skip(2)
+            .skipLast(2)
+            //.distinct { it.age }
+            .subscribe(
+                {
+                    Log.d(TAG, "onNext: "+it)
+                },
+                {
+                    Log.d(TAG, "onError: "+it.toString())
+                },
+                {
+                    Log.d(TAG, "onComplete: ")
+                }
+            )
     }
 
     private fun distinctOperatorMethod() {
