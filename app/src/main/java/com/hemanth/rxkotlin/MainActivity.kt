@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.hemanth.rxkotlin.data.User
+import com.hemanth.rxkotlin.data.UserProfile
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
@@ -44,8 +45,30 @@ class MainActivity : AppCompatActivity() {
 
         // skipOperatorMethod()
 
-        bufferOperatorMethod()
+        // bufferOperatorMethod()
 
+        mapOperatorMethod()
+
+    }
+
+    private fun mapOperatorMethod() {
+        // its a tranforming operator
+        mapOperator()
+            //.map { it.age * 2 }
+            .map {
+                UserProfile(it.id,it.name,it.age,"https://test.com/${it.id}") // transforming one object to another
+            }
+            .subscribe(
+                {
+                    Log.d(TAG, "onNext: "+it)
+                },
+                {
+                    Log.d(TAG, "onError: "+it.toString())
+                },
+                {
+                    Log.d(TAG, "onComplete: ")
+                }
+            )
     }
 
     private fun bufferOperatorMethod() {

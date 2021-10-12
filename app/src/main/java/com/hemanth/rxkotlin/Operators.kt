@@ -157,3 +157,7 @@ fun bufferOperator(): Observable<User>{
     return Observable.fromIterable(mUserList)
 }
 
+fun mapOperator() : Observable<User>{
+    return Observable.fromIterable(mUserList)
+}
+
